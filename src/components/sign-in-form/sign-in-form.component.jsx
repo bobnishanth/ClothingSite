@@ -1,11 +1,12 @@
+import { useState } from 'react'
+
 import FormInput from '../input-form/input-form.component'
 import { ReactComponent as Googlelogo } from '../../assets/googlelogo.svg'
 import { ReactComponent as Facebooklogo } from '../../assets/facebooklogo.svg'
 
 import './sign-in-from.styles.scss'
-import { useState } from 'react'
+
 import {
-  createUserDocumentFromAuth,
   signInWithGooglePopup,
   signInWithFacebookPopup,
   signInUserWithEmailAndPassword,
@@ -22,13 +23,12 @@ const SigninForm = () => {
   const { email, password } = formField
 
   const logGoogleUser = async () => {
-    const response = await signInWithGooglePopup()
-    await createUserDocumentFromAuth(response.user)
+    await signInWithGooglePopup()
+    // const { user } = await signInWithGooglePopup().Its used to be like this before moving below line to User Context
+    //createUserDocumentFromAuth(user) It is moved to userContext file
   }
   const logFacebookUser = async () => {
-    const response = await signInWithFacebookPopup()
-
-    await createUserDocumentFromAuth(response.user)
+    await signInWithFacebookPopup()
   }
 
   const handleChange = (event) => {
@@ -39,10 +39,10 @@ const SigninForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const response = await signInUserWithEmailAndPassword(email, password)
+      const { user } = await signInUserWithEmailAndPassword(email, password)
+
       //response.user.displayName = displayName
-      if (response) {
-        await createUserDocumentFromAuth(response.user)
+      if (user) {
       }
     } catch (error) {
       switch (error.code) {
@@ -58,7 +58,6 @@ const SigninForm = () => {
     }
   }
 
-  console.log(formField)
   return (
     <div>
       <h2>Already have an Account?</h2>

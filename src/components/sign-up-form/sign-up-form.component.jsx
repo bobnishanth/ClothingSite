@@ -6,6 +6,7 @@ import {
 import FormInput from '../input-form/input-form.component'
 import Button from '../button/button.component'
 import './sign-up.styles.scss'
+
 const Signup = () => {
   const defaultFormFields = {
     displayName: '',
@@ -13,6 +14,7 @@ const Signup = () => {
     password: '',
     confirmPassword: '',
   }
+
   const resetFormField = () => {
     setFormField({ defaultFormFields })
   }
@@ -25,10 +27,11 @@ const Signup = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     if (password === confirmPassword) {
-      const response = await createAuthUserWithEmailAndPassword(email, password)
-      response.user.displayName = displayName
-      if (response) {
-        await createUserDocumentFromAuth(response.user)
+      const { user } = await createAuthUserWithEmailAndPassword(email, password)
+
+      user.displayName = displayName
+      if (user) {
+        await createUserDocumentFromAuth(user)
         resetFormField()
       }
     }

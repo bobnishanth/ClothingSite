@@ -5,6 +5,8 @@ import {
   signInWithRedirect,
   signInWithPopup,
   signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   FacebookAuthProvider,
@@ -68,3 +70,7 @@ export const signInUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return
   return signInWithEmailAndPassword(auth, email, password)
 }
+export const signOutUser = async () => await signOut(auth)
+
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback)
