@@ -28,7 +28,7 @@ const Signup = () => {
       const response = await createAuthUserWithEmailAndPassword(email, password)
       response.user.displayName = displayName
       if (response) {
-        const userDocRef = await createUserDocumentFromAuth(response.user)
+        await createUserDocumentFromAuth(response.user)
         resetFormField()
       }
     }
@@ -37,7 +37,7 @@ const Signup = () => {
   return (
     <div className='sign-up-container'>
       <h2>Don't have an account?</h2>
-      <span>Sign Up with Email & Password</span>
+      <span>Sign Up with Email and Password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label='Display Name'
