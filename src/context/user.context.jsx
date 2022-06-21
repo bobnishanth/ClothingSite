@@ -2,7 +2,6 @@ import { createContext } from 'react'
 import { useState, useEffect } from 'react'
 import {
   onAuthStateChangedListener,
-  signOutUser,
   createUserDocumentFromAuth,
 } from '../utils/firebase.util'
 export const userContext = createContext({
@@ -19,7 +18,6 @@ export const UserProvider = ({ children }) => {
         createUserDocumentFromAuth(user)
       }
       setCurrentUser(user)
-      console.log(user)
     })
     return unsubscribe //This is a function which ends the listener to run all the run.It is essential to invoke this to free  memory or else it will keep on Listening to the state changes
   }, [])

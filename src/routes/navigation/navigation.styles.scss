@@ -20,7 +20,12 @@
 
     .nav-link {
       padding: 10px 15px;
-      cursor: pointer;
+
+      &:hover {
+        background-color: darkgray;
+        cursor: pointer;
+        border-radius: 25px;
+      }
     }
   }
 }
