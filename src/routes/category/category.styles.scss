@@ -1,0 +1,17 @@
+// .category-container {
+//   display: grid;
+//   grid-template-columns: repeat(4, 1fr);
+//   column-gap: 30px;
+// }
+.shop-category {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 50px;
+  column-gap: 20px;
+}
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 35px;
+}

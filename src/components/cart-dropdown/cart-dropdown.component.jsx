@@ -11,19 +11,25 @@ const CartDropDown = () => {
   return (
     <div className='cart-dropdown-container'>
       <div className='cart-items'>
-        {cartItems.map((item) => (
-          <CartItem key={item.id} cartItem={item}></CartItem>
-        ))}
+        {cartItems.length ? (
+          cartItems.map((item) => (
+            <CartItem key={item.id} cartItem={item}></CartItem>
+          ))
+        ) : (
+          <span className='empty-message'>Cart is empty</span>
+        )}
       </div>
-      <span>Total:$ {cartTotal}</span>
+      {cartItems.length > 0 && <span>Total:$ {cartTotal}</span>}
 
-      <Button
-        style={{ borderRadius: '0px' }}
-        onClick={handleCheckout}
-        buttonType='inverted'
-      >
-        Go to Checkout
-      </Button>
+      {cartItems.length > 0 && (
+        <Button
+          style={{ borderRadius: '0px' }}
+          onClick={handleCheckout}
+          buttonType='submit'
+        >
+          Go to Checkout
+        </Button>
+      )}
     </div>
   )
 }
