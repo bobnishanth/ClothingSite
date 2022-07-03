@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { useContext } from 'react'
 
+import { userContext } from '../../context/user.context'
 import FormInput from '../input-form/input-form.component'
 import { ReactComponent as Googlelogo } from '../../assets/googlelogo.svg'
 import { ReactComponent as Facebooklogo } from '../../assets/facebooklogo.svg'
@@ -18,6 +20,7 @@ const defaultFormFields = {
   email: '',
   password: '',
 }
+
 const SigninForm = () => {
   const [formField, setFormField] = useState(defaultFormFields)
   const { email, password } = formField
@@ -27,6 +30,7 @@ const SigninForm = () => {
     // const { user } = await signInWithGooglePopup().Its used to be like this before moving below line to User Context
     //createUserDocumentFromAuth(user) It is moved to userContext file
   }
+
   const logFacebookUser = async () => {
     await signInWithFacebookPopup()
   }
